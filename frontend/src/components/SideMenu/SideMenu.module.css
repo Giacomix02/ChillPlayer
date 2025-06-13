@@ -1,0 +1,36 @@
+.background {
+    background-color: #161721;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.containerColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.logoContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logotext{
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+.discoverText{
+    color:#B3B3B3;
+    font-size: 1.2rem;
+}
+
+.iconColor{
+    color: #F14458;
+    fill: #F14458;
+    stroke: #F14458;
+
+}
+
+.link {
+
+}
