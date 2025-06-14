@@ -1,6 +1,6 @@
 import s from './page.module.css';
 
-export default function SongListPage() {
+export default function SongsListPage() {
     return (
         <div className={s.container}>
             <h1>Song List</h1>

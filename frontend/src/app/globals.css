@@ -7,15 +7,21 @@ html {
     flex-direction: column;
     padding: 0;
     margin: 0;
-    background-color: #0a0f14;
+    background-color: var(--background-color);
     font-family: 'Orienta', serif;
+    color: white;
+}
+
+a{
+    color: inherit;
+    appearance: none;
+    text-decoration: none;
 }
 
 *{
     box-sizing: border-box;
     margin:0;
     padding:0;
-    color: white;
 }
 
 button{
@@ -27,3 +33,12 @@ button{
     cursor: pointer;
     outline: inherit;
 }
+
+:root {
+    --background-color: #0a0f14;
+    --background-color-secondary: #161721;
+    --button-active-color: #232431;
+    --primary-color: #e05162;
+    --section-text-color: #B3B3B3;
+}
+
