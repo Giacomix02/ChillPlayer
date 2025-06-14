@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Orienta } from "next/font/google";
 import "./globals.css";
-import SideMenu from "@/components/SideMenu/SideMenu";
-import s from "@/app/layout.module.css";
-import AudioPlayer from "@/components/AudioPlayer/AudioPlayer";
+import SideMenu from "$/components/SideMenu/SideMenu";
+import s from "$/app/layout.module.css";
+import AudioPlayer from "$/components/AudioPlayer/AudioPlayer";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",

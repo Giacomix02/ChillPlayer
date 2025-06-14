@@ -36,6 +36,7 @@
     padding: 0.7rem;
     display: flex;
     align-items: center;
+    border-left: 0.35rem solid transparent;
 }
 
 
