@@ -37,8 +37,9 @@ button{
 :root {
     --background-color: #0a0f14;
     --background-color-secondary: #161721;
-    --button-active-color: #232431;
+    --third-color: #232431;
     --primary-color: #e05162;
     --section-text-color: #B3B3B3;
+    --other-button-color: #C5C5C5;
 }
 

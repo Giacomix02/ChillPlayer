@@ -49,7 +49,7 @@
 }
 
 .active{
-    background-color: var(--button-active-color);
+    background-color: var(--third-color);
     border-radius: 0.5rem;
     border-left: 0.35rem solid var(--primary-color);
 }

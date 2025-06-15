@@ -1,0 +1,24 @@
+.back{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--third-color);
+    padding: 1rem;
+    margin: 0.6rem;
+    border-radius: 0.5rem;
+}
+
+.playButton{
+    font-size:1.2rem;
+    color: var(--primary-color);
+}
+
+
+.pauseButton{
+    font-size:1.2rem;
+    color: var(--primary-color);
+}
+
+.nextBackButton{
+    font-size:1.2rem;
+    color: var(--other-button-color);
+}
