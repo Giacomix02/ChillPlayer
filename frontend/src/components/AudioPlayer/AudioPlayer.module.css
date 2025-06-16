@@ -1,3 +1,8 @@
+:root {
+    --play-stop-size: 1.5rem;
+    --next-back-size: 1.2rem;
+}
+
 .back{
     display: flex;
     flex-direction: row;
@@ -8,17 +13,55 @@
 }
 
 .playButton{
-    font-size:1.2rem;
+    font-size:var(--play-stop-size);
     color: var(--primary-color);
+    display: flex;
 }
 
 
 .pauseButton{
-    font-size:1.2rem;
+    font-size:var(--play-stop-size);
     color: var(--primary-color);
+    display: flex;
 }
 
 .nextBackButton{
-    font-size:1.2rem;
+    font-size:var(--next-back-size);
     color: var(--other-button-color);
+    display: flex;
+}
+
+.left{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.right{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.rightContainer{
+    display: flex;
+    gap: 1rem;
+}
+
+.timeline{
+    display: flex;
+    width: 100%;
+    accent-color: var(--primary-color);
 }
