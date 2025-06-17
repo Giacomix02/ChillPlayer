@@ -52,6 +52,13 @@ export default function AudioPlayer() {
         audioPlayer.current?.pause();
         // Logic to stop the currently playing song
     }
+    function jumpToTime(time: number) {
+        console.log("Jump to time clicked");
+        if (audioPlayer.current) {
+            audioPlayer.current.currentTime = time;
+            setCurrentTime(time);
+        }
+    }
 
     return (
         <div className={s.back}>
@@ -60,8 +67,15 @@ export default function AudioPlayer() {
             </div>
 
             <div className={s.center}>
-                <input className={s.timeline} type="range" name="Timeline" min="0" max={duration*10000}
-                       defaultValue={currentTime*10000}/>
+                <input
+                    className={s.timeline}
+                    type="range"
+                    name="Timeline"
+                    min="0"
+                    max={duration*10000}
+                    value={currentTime*10000}
+                    onChange={(e) => jumpToTime(parseFloat(e.target.value)/10000)}
+                />
             </div>
 
 
