@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    background-color: var(--background-color-secondary);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.playButton {
+    display: flex;
+    color: var(--primary-color);
+    font-size: var(--play-stop-size);
+}

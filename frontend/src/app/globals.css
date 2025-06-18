@@ -10,7 +10,9 @@ html {
     background-color: var(--background-color);
     font-family: 'Orienta', serif;
     color: white;
+    overflow: hidden;
 }
+
 
 a{
     color: inherit;

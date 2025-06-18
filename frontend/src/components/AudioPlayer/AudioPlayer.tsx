@@ -4,51 +4,69 @@ import {open} from "@tauri-apps/plugin-dialog";
 import {readFile} from "@tauri-apps/plugin-fs";
 import s from "./AudioPlayer.module.css";
 import { FaPlay, FaPause, FaStepForward, FaStepBackward  } from "react-icons/fa";
+import {usePlayContext} from "$/app/PlayContext";
 
 export default function AudioPlayer() {
 
-    //const audioPlayer = document.getElementById('audioPlayer') as HTMLAudioElement;
     const audioPlayer = useRef<HTMLAudioElement>(null)
     const [path, setPath] = useState<string|null>(null);
     const [currentTime, setCurrentTime] = useState<number>(0); //expressed in seconds
     const [duration, setDuration] = useState<number>(0); //expressed in seconds
     const [play, setPlay] = useState<boolean>(true);
     const[name, setName] = useState<string>("Unknown Title");
+    const {currentSong, filesPaths, setCurrentSong} = usePlayContext();
 
+    useEffect( () => {
 
+        if (!currentSong) return;
+        console.log("Current song changed:", currentSong);
 
-    async function loadSong() {
-        console.log("Load song clicked");
-        setPlay(true)
-        const file = await open({
-            multiple: false,
-            directory: false,
-        });
-        if (!file) {
-            console.error("No file selected");
-            return;
+        async function handleSongChange() {
+            if (!currentSong) return;
+            await createfileUrl(currentSong);
+            console.log("Creating file URL for:", path);
         }
-        const data = await readFile(file);
+
+        handleSongChange();
+        setCurrentSong("");
+
+    }, [currentSong]);
+
+     async function createfileUrl(filePath: string){
+        const data = await readFile(filePath);
         const blob = new Blob([new Uint8Array(data)], { type: 'audio/mpeg' });
         const fileUrl = URL.createObjectURL(blob);
-        console.log("File URL:", fileUrl);
-        setPath(fileUrl);
 
-        const fileNameWithExt = file.split(/[\\/]/).pop() || "Unknown Title";
+        setPath(fileUrl);
+        const fileNameWithExt = filePath.split(/[\\/]/).pop() || "Unknown Title";
         const fileName = fileNameWithExt.replace(/\.[^/.]+$/, "") || "Unknown Title";
         setName(fileName);
-
-
     }
+
+    // async function loadSong() {
+    //     console.log("Load song clicked");
+    //     setPlay(true)
+    //     const file = await open({
+    //         multiple: false,
+    //         directory: false,
+    //     });
+    //     if (!file) {
+    //         console.error("No file selected");
+    //         return;
+    //     }
+    //     await createfileUrl(file);
+    // }
+
     function playSong() {
         console.log("Play song clicked");
-        setPlay(!play);
+        setPlay(false);
         audioPlayer.current?.play();
         // Logic to play the loaded song
     }
+
     function stopSong() {
         console.log("Stop song clicked");
-        setPlay(!play);
+        setPlay(true);
         audioPlayer.current?.pause();
         // Logic to stop the currently playing song
     }
@@ -93,15 +111,19 @@ export default function AudioPlayer() {
                 </div>
             </div>
 
-            <button type="button" onClick={loadSong}>
-                Load Song
-            </button>
+            {/*<button type="button" onClick={loadSong}>*/}
+            {/*    Load Song*/}
+            {/*</button>*/}
             {
                 path ? <audio
                     ref={audioPlayer}
                     preload="auto" src={path}
                     onTimeUpdate={() => setCurrentTime(audioPlayer.current?.currentTime || 0)}
-                    onLoadedMetadata={() => setDuration(audioPlayer.current?.duration || 0)}
+                    onLoadedMetadata={() =>{
+                        setDuration(audioPlayer.current?.duration || 0)
+                        playSong()
+                        }
+                    }
                     onEnded={() => setPlay(true)}
                 ></audio> : null
             }
