@@ -1,7 +1,4 @@
-:root {
-    --play-stop-size: 1.5rem;
-    --next-back-size: 1.2rem;
-}
+
 
 .back{
     display: flex;
@@ -12,14 +9,14 @@
     border-radius: 0.5rem;
 }
 
-.playButton{
+.button{
     font-size:var(--play-stop-size);
     color: var(--primary-color);
     display: flex;
 }
 
 
-.pauseButton{
+.pauseButton, .playButton{
     font-size:var(--play-stop-size);
     color: var(--primary-color);
     display: flex;

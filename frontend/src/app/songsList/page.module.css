@@ -34,7 +34,7 @@
     scrollbar-width: none;
 }
 
-.playButton{
+.button{
     font-size:var(--play-stop-size);
     color: var(--primary-color);
     display: flex;

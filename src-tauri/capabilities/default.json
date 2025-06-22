@@ -7,9 +7,25 @@
   ],
   "permissions": [
     "core:default",
+    "fs:read-dirs",
+    "fs:read-files",
+    "fs:allow-home-read",
+    "fs:allow-data-read",
     "opener:default",
     "dialog:default",
     "fs:allow-read",
-    "fs:default"
+    "fs:default",
+    "fs:allow-read-file",
+    "fs:allow-exists",
+    "fs:allow-app-read",
+    {
+      "identifier":"fs:allow-mkdir",
+      "allow": [
+        "$AUDIO/**",
+        "$DOCUMENTS/**",
+        "$HOME/**",
+        "$DOWNLOAD/**"
+      ]
+    }
   ]
 }

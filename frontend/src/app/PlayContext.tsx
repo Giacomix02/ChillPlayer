@@ -6,16 +6,16 @@ import { createContext, useContext, useState, ReactNode } from "react";
 interface PlayContextType {
     currentSong: string | undefined;
     setCurrentSong: (song: string) => void;
-    filesPaths: string[] | undefined;
-    setFilesPaths: (paths: string[]) => void;
+    queueFilesPaths: string[] | undefined;
+    setQueueFilesPaths: (paths: string[]) => void;
 }
 
 // Default values
 const defaultContext: PlayContextType = {
     currentSong: undefined,
     setCurrentSong: () => {},
-    filesPaths: undefined,
-    setFilesPaths: () => {},
+    queueFilesPaths: undefined,
+    setQueueFilesPaths: () => {},
 };
 
 export const PlayContext = createContext<PlayContextType>(defaultContext);
@@ -31,8 +31,8 @@ export function PlayContextProvider({ children }: { children: ReactNode }) {
             value={{
             currentSong,
             setCurrentSong,
-            filesPaths,
-            setFilesPaths,
+            queueFilesPaths: filesPaths,
+            setQueueFilesPaths: setFilesPaths,
     }}>
     {children}
     </PlayContext.Provider>

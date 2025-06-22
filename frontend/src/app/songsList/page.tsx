@@ -6,10 +6,20 @@ import { FaPlay} from "react-icons/fa";
 import {useState} from "react";
 import AudioRow from "$components/AudioRow/AudioRow";
 import {usePlayContext} from "$/app/PlayContext";
+import {addSource, getSourcesByType} from "$/Db/queries";
+import {Source} from "$/Db/db";
+import {useLiveQuery} from "dexie-react-hooks";
+
 
 export default function SongListPage() {
 
-    const {filesPaths, setFilesPaths} = usePlayContext()
+    const {queueFilesPaths, setQueueFilesPaths} = usePlayContext()
+
+
+
+    const songs = useLiveQuery(
+        ()=> getSourcesByType('audio'),
+    )
 
     async function loadFiles() {
         const file = await open({
@@ -25,7 +35,11 @@ export default function SongListPage() {
         }
 
         if (Array.isArray(file)) {
-            setFilesPaths(file);
+
+            file.forEach((async path => {
+                let success = await addSource(path, 'audio')
+            }))
+
         } else {
             return
         }
@@ -49,10 +63,10 @@ export default function SongListPage() {
             </div>
             <div className={s.songsList}>
                 {
-                    filesPaths ?
-                        filesPaths?.map(path =>
-                            <AudioRow key={path} genre={undefined} title={getSongName(path)} artist={undefined} path={path}/>
-                    ): null
+
+                    songs?.map(song =>
+                        <AudioRow key={song.id} id={song.id} genre={undefined} title={getSongName(song.path)} artist={undefined} path={song.path}/>
+                    )
                 }
             </div>
         </div>

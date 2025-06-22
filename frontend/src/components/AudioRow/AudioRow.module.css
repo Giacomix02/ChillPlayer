@@ -3,10 +3,44 @@
     background-color: var(--background-color-secondary);
     padding: 1rem;
     border-radius: 0.5rem;
+    justify-content: space-between;
 }
 
-.playButton {
+.buttonDelete {
+    display: flex;
+    color: var(--forth-color);
+    font-size: var(--delete-button-size);
+    transition: transform ease-in-out 0.2s;
+}
+
+.buttonPlay {
     display: flex;
     color: var(--primary-color);
     font-size: var(--play-stop-size);
+    transition: transform  ease-in-out 0.2s;
+}
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+}
+
+.infosContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonPlay:hover {
+    transform: scale(1.1);
+}
+
+.buttonDelete:hover {
+    transform: scale(0.9);
 }

@@ -1,12 +1,13 @@
 import styles from "./AudioRow.module.css";
 import Link from "next/link";
 import s from "./AudioRow.module.css";
-import {FaPlay} from "react-icons/fa";
+import {FaPlay, FaTimes} from "react-icons/fa";
 import {usePlayContext} from "$/app/PlayContext";
+import {deleteSource} from "$/Db/queries";
 
-type Music = {genre: string|undefined; title: string; artist: string|undefined, path: string};
+type Source = {genre: string|undefined; title: string; artist: string|undefined, path: string, id: number};
 
-export default function AudioRow({genre, artist, title, path}:Music) {
+export default function AudioRow({genre, artist, title, path, id}:Source) {
 
     const {currentSong, setCurrentSong } = usePlayContext()
 
@@ -14,13 +15,25 @@ export default function AudioRow({genre, artist, title, path}:Music) {
         setCurrentSong(path);
     }
 
+    async function handleDelete() {
+        await deleteSource(id);
+    }
+
     return (
         <div className={s.container}>
-            <div className={styles.test}>{title}</div>
-            <div className={styles.test}>{artist}</div>
-            <button>
-                <FaPlay className={s.playButton} onClick={handlePlay}/>
-            </button>
+            <div className={styles.infosContainer}>
+                <div className={styles.title}>{title}</div>
+                <div>{artist}</div>
+            </div>
+            <div className={styles.buttonsContainer}>
+                <button title="Delete">
+                <FaTimes className={s.buttonDelete} onClick={handleDelete}/>
+                </button>
+                <button title="Play">
+                    <FaPlay className={s.buttonPlay} onClick={handlePlay}/>
+                </button>
+            </div>
+
         </div>
     );
 }

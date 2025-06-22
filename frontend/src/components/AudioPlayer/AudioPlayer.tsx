@@ -14,17 +14,16 @@ export default function AudioPlayer() {
     const [duration, setDuration] = useState<number>(0); //expressed in seconds
     const [play, setPlay] = useState<boolean>(true);
     const[name, setName] = useState<string>("Unknown Title");
-    const {currentSong, filesPaths, setCurrentSong} = usePlayContext();
+    const {currentSong, queueFilesPaths, setCurrentSong} = usePlayContext();
 
     useEffect( () => {
 
         if (!currentSong) return;
-        console.log("Current song changed:", currentSong);
 
         async function handleSongChange() {
             if (!currentSong) return;
+            console.log("Loading song in handleSongChange");
             await createfileUrl(currentSong);
-            console.log("Creating file URL for:", path);
         }
 
         handleSongChange();
@@ -33,45 +32,35 @@ export default function AudioPlayer() {
     }, [currentSong]);
 
      async function createfileUrl(filePath: string){
+        console.log("inizio createfileUrl");
         const data = await readFile(filePath);
+        console.log("1")
         const blob = new Blob([new Uint8Array(data)], { type: 'audio/mpeg' });
+        console.log("2")
         const fileUrl = URL.createObjectURL(blob);
+        console.log("3")
 
         setPath(fileUrl);
+        console.log("4")
         const fileNameWithExt = filePath.split(/[\\/]/).pop() || "Unknown Title";
         const fileName = fileNameWithExt.replace(/\.[^/.]+$/, "") || "Unknown Title";
+        console.log("5")
         setName(fileName);
     }
 
-    // async function loadSong() {
-    //     console.log("Load song clicked");
-    //     setPlay(true)
-    //     const file = await open({
-    //         multiple: false,
-    //         directory: false,
-    //     });
-    //     if (!file) {
-    //         console.error("No file selected");
-    //         return;
-    //     }
-    //     await createfileUrl(file);
-    // }
 
     function playSong() {
-        console.log("Play song clicked");
         setPlay(false);
         audioPlayer.current?.play();
         // Logic to play the loaded song
     }
 
     function stopSong() {
-        console.log("Stop song clicked");
         setPlay(true);
         audioPlayer.current?.pause();
         // Logic to stop the currently playing song
     }
     function jumpToTime(time: number) {
-        console.log("Jump to time clicked");
         if (audioPlayer.current) {
             audioPlayer.current.currentTime = time;
             setCurrentTime(time);
@@ -90,9 +79,9 @@ export default function AudioPlayer() {
                     type="range"
                     name="Timeline"
                     min="0"
-                    max={duration*10000}
-                    value={currentTime*10000}
-                    onChange={(e) => jumpToTime(parseFloat(e.target.value)/10000)}
+                    max={duration*1000000}
+                    value={currentTime*1000000}
+                    onChange={(e) => jumpToTime(parseFloat(e.target.value)/1000000)}
                 />
             </div>
 
@@ -111,9 +100,6 @@ export default function AudioPlayer() {
                 </div>
             </div>
 
-            {/*<button type="button" onClick={loadSong}>*/}
-            {/*    Load Song*/}
-            {/*</button>*/}
             {
                 path ? <audio
                     ref={audioPlayer}
