@@ -1,4 +1,4 @@
-import {db, Playlist, Source} from "$/Db/db";
+import {db, Playlist, Source} from "$/db/db";
 import {PromiseExtended} from "dexie";
 
 
@@ -51,6 +51,11 @@ export async function updateSourcePlayTimeById(id: number) {
     const source = await db.Sources.get(id);
     const playTime = source?.playTime || 0;
     await db.Sources.update(id, {playTime: playTime + 1});
+}
+
+export async function getMorePlayedSources(limit: number, type: 'video' | 'audio'): Promise<Array<Source>> {
+    const array = await db.Sources.where('type').equals(type).toArray()
+    return array.sort((a, b) => b.playTime - a.playTime).slice(0, limit);
 }
 
 export async function getAllSources(): Promise<Array<Source>> {

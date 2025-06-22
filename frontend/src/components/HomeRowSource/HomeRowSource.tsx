@@ -1,13 +1,13 @@
-import styles from "./AudioRow.module.css";
+import styles from "./HomeRowSource.module.css";
 import Link from "next/link";
-import s from "./AudioRow.module.css";
+import s from "./HomeRowSource.module.css";
 import {FaPlay, FaTimes} from "react-icons/fa";
 import {usePlayContext} from "$/app/PlayContext";
 import {deleteSource, updateSourcePlayTimeById} from "$/db/queries";
 
-type Source = {genre: string|undefined; title: string; artist: string|undefined, path: string, id: number};
+type HomeSource = {title: string, path: string, id: number};
 
-export default function AudioRow({genre, artist, title, path, id}:Source) {
+export default function HomeRowSource({title, path, id}:HomeSource) {
 
     const {currentSong, setCurrentSong } = usePlayContext()
 
@@ -24,12 +24,8 @@ export default function AudioRow({genre, artist, title, path, id}:Source) {
         <div className={s.container}>
             <div className={styles.infosContainer}>
                 <div className={styles.title}>{title}</div>
-                <div>{artist}</div>
             </div>
             <div className={styles.buttonsContainer}>
-                <button title="Remove">
-                <FaTimes className={s.buttonDelete} onClick={handleDelete}/>
-                </button>
                 <button title="Play">
                     <FaPlay className={s.buttonPlay} onClick={handlePlay}/>
                 </button>

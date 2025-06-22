@@ -6,9 +6,10 @@ import { FaPlay} from "react-icons/fa";
 import {useState} from "react";
 import AudioRow from "$components/AudioRow/AudioRow";
 import {usePlayContext} from "$/app/PlayContext";
-import {addSource, getSourcesByType} from "$/Db/queries";
-import {Source} from "$/Db/db";
+import {addSource, getSourcesByType} from "$/db/queries";
+import {Source} from "$/db/db";
 import {useLiveQuery} from "dexie-react-hooks";
+import {getFileName} from "$/services/services";
 
 
 export default function SongListPage() {
@@ -45,12 +46,6 @@ export default function SongListPage() {
         }
     }
 
-    function getSongName(path: string): string {
-        const fileNameWithExt = path.split(/[\\/]/).pop() || "Unknown Title";
-        return fileNameWithExt.replace(/\.[^/.]+$/, "") || "Unknown Title";
-    }
-
-
     return (
         <div className={s.container}>
             <div className={s.header}>
@@ -63,9 +58,8 @@ export default function SongListPage() {
             </div>
             <div className={s.songsList}>
                 {
-
                     songs?.map(song =>
-                        <AudioRow key={song.id} id={song.id} genre={undefined} title={getSongName(song.path)} artist={undefined} path={song.path}/>
+                        <AudioRow key={song.id} id={song.id} genre={undefined} title={getFileName(song.path)} artist={undefined} path={song.path}/>
                     )
                 }
             </div>
