@@ -26,7 +26,7 @@ export default function AudioRow({genre, artist, title, path, id}:Source) {
                 <div>{artist}</div>
             </div>
             <div className={styles.buttonsContainer}>
-                <button title="Delete">
+                <button title="Remove">
                 <FaTimes className={s.buttonDelete} onClick={handleDelete}/>
                 </button>
                 <button title="Play">
