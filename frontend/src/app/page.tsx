@@ -24,7 +24,13 @@ export default function Home() {
                         )
                     }
                 </div>
-                <div className={s.videoContainer}></div>
+                <div className={s.videoContainer}>
+                    {
+                        songs?.map(song =>
+                            <HomeRowSource key={song.id} id={song.id} path={song.path} title={getFileName(song.path)}/>
+                        )
+                    }
+                </div>
             </div>
 
         </div>
