@@ -10,11 +10,13 @@ import {addSource, getSourcesByType} from "$/db/queries";
 import {Source} from "$/db/db";
 import {useLiveQuery} from "dexie-react-hooks";
 import {getFileName} from "$/services/services";
+import PlaylistSelectorModal from "$components/PlaylistSelectorModal/PlaylistSelectorModal";
 
 
 export default function SongListPage() {
 
     const {queueFilesPaths, setQueueFilesPaths} = usePlayContext()
+    const {showPlaylistSelectorModal,setShowPlaylistSelectorModal } = usePlayContext();
 
 
 
@@ -48,6 +50,10 @@ export default function SongListPage() {
 
     return (
         <div className={s.container}>
+            {
+                showPlaylistSelectorModal?.show &&
+                <PlaylistSelectorModal/>
+            }
             <div className={s.header}>
                 <h1>Songs</h1>
                 <div className={s.addSourceContainer}>

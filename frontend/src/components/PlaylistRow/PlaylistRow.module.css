@@ -13,12 +13,6 @@
     transition: transform ease-in-out 0.2s;
 }
 
-.buttonPlay, .buttonAddToPlaylist{
-    display: flex;
-    color: var(--primary-color);
-    font-size: var(--play-stop-size);
-    transition: transform  ease-in-out 0.2s;
-}
 
 .buttonsContainer {
     display: flex;
@@ -27,7 +21,7 @@
     gap: 1rem;
 }
 
-.title{
+.name{
     display: flex;
     align-items: center;
 }
@@ -35,10 +29,6 @@
 .infosContainer {
     display: flex;
     justify-content: center;
-}
-
-.buttonPlay:hover {
-    transform: scale(1.1);
 }
 
 .buttonDelete:hover {
