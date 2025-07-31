@@ -34,7 +34,7 @@ export default function playlistsListPage() {
                     </button>
                 </div>
             </div>
-            <div className={s.playlistList}>
+            <div className={s.playlistsList}>
                 {
                     playlists?.map(playlist =>
                         <PlaylistRow key={playlist.id} name={playlist.name} id={playlist.id}/>

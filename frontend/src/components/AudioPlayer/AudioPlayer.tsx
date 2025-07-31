@@ -55,11 +55,12 @@ export default function AudioPlayer() {
         // Logic to play the loaded song
     }
 
-    function stopSong() {
+     function pauseSong() {
         setPlay(true);
         audioPlayer.current?.pause();
         // Logic to stop the currently playing song
     }
+
     function jumpToTime(time: number) {
         if (audioPlayer.current) {
             audioPlayer.current.currentTime = time;
@@ -91,7 +92,7 @@ export default function AudioPlayer() {
                     <button>
                         <FaStepBackward className={s.nextBackButton}/>
                     </button>
-                    <button type="button" onClick={play ? playSong : stopSong}>
+                    <button type="button" onClick={play ? playSong : pauseSong}>
                         {play ? <FaPlay className={s.playButton}/> : <FaPause className={s.pauseButton}/>}
                     </button>
                     <button>
@@ -117,3 +118,4 @@ export default function AudioPlayer() {
         </div>
     );
 }
+

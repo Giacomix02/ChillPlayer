@@ -4,4 +4,5 @@ export const APP_ROUTES = {
     videosList: "/videosList",
     playlistsList: "/playlistsList",
     sftpSetup: "/sftpSetup",
+    playlistSources: "/playlistSources",
 }

@@ -6,12 +6,13 @@
     overflow: hidden;
     padding: 1rem 1rem 0 1rem;
 }
+
 .header {
     display: flex;
     flex-direction: column;
 }
 
-.addPlaylistContainer{
+.addSourceContainer{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -19,16 +20,22 @@
     margin-bottom: 1rem;
 }
 
-.addPlaylistButton {
+.addSourceButton {
     padding: 0.5rem;
     background-color: var(--primary-color);
     border-radius: 0.5rem;
 }
 
-.playlistsList {
+.sourcesList {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     overflow-y: auto;
     scrollbar-width: none;
+}
+
+.button{
+    font-size:var(--play-stop-size);
+    color: var(--primary-color);
+    display: flex;
 }

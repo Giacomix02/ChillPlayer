@@ -18,6 +18,10 @@ export default function AudioRow({genre, artist, title, path, id}:Source) {
         await updateSourcePlayTimeById(id);
     }
 
+    function handlePause() {
+
+    }
+
     async function handleDelete() {
         await deleteSource(id);
     }
